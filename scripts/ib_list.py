@@ -19,4 +19,5 @@ ib_res = ib_res.replace("descr", "{#DESCR}")
 ib_list = []
 for ib in ib_res.split('\r\n\r\n'):
     ib_list.append(getDictFromString(ib))
+ib_list.append({"{#INFOBASE}": "all_infobases", "{#NAME}": "All_IBs_of_cluster", "{#DESCR}": "all_infobases"})
 print(json.dumps({'data': ib_list}))

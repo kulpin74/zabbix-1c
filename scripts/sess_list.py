@@ -13,8 +13,10 @@ def getDictFromString(txtBlock):
 dict_apps = {'COMConnection': 0, 'Designer': 0, '1CV8C': 0, '1CV8': 0, 'BackgroundJob': 0}
 cluster_res = subprocess.check_output(['rac', 'cluster', 'list']).decode('cp866').strip()
 cluster = getDictFromString(cluster_res)
-sess_res = subprocess.check_output(['rac', 'session', 'list', '--cluster='+cluster['cluster'],
-                                    '--infobase='+sys.argv[1]]).decode('cp866').strip()
+cmd_list = ['rac', 'session', 'list', '--cluster='+cluster['cluster']]
+if sys.argv[1] != 'all_infobases':
+    cmd_list.append('--infobase=' + sys.argv[1])
+sess_res = subprocess.check_output(cmd_list).decode('cp866').strip()
 if len(sess_res) < 2:
     print(json.dumps(dict_apps))
     sys.exit()
