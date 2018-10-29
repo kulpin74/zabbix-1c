@@ -11,6 +11,8 @@
 Для запуска - команда:  
 `net start "1C:Enterprise RAS"`
 
+В системную переменную PATH необходимо добавить путь где находяться исполняемый файл rac.exe: `c:\Program Files\1cv8\8.X.XX.XXXX\bin\`
+
 Необходимо установить Python. http://python.org
 
 На сервер, с установленным RAC и Zabbix agent необходимо положить файлы из каталога scripts и файл конфигурации 1s_zabbix.conf.
