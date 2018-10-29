@@ -11,7 +11,7 @@
 Для запуска - команда:  
 `net start "1C:Enterprise RAS"`
 
-В системную переменную PATH необходимо добавить путь где находяться исполняемый файл rac.exe: `c:\Program Files\1cv8\8.X.XX.XXXX\bin\`
+В системную переменную PATH необходимо добавить путь где находится исполняемый файл rac.exe: `c:\Program Files\1cv8\8.X.XX.XXXX\bin\`
 
 Необходимо установить Python. http://python.org
 
