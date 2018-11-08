@@ -27,7 +27,8 @@
 - zabbix agent - c:\zabbix
 - python - c:\Program Files\Python37\python.exe
 
-Шаблон для Zabbix: 1c-zabbix.xml
+Шаблон для Zabbix 4.0: `1c-zabbix.xml`  
+Шаблон для Zabbix 3.4: `1c_ent_template_34.xml`
 
 На текущий момент снимаются количество соединений к каждой базе и к кластеру в целом.
 Для каждой базы создается отдельный график
