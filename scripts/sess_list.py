@@ -10,7 +10,15 @@ def getDictFromString(txtBlock):
     return dict_el
 
 
-dict_apps = {'COMConnection': 0, 'Designer': 0, '1CV8C': 0, '1CV8': 0, 'BackgroundJob': 0}
+dict_apps = {'COMConnection': 0,
+             'Designer': 0,
+             '1CV8C': 0,
+             '1CV8': 0,
+             'BackgroundJob': 0,
+             'WebClient': 0,
+             'blockedByDBMS': 0,
+             'dbProcTook': 0,
+             'bytesAll': 0}
 cluster_res = subprocess.check_output(['rac', 'cluster', 'list']).decode('cp866').strip()
 cluster = getDictFromString(cluster_res)
 cmd_list = ['rac', 'session', 'list', '--cluster='+cluster['cluster']]
@@ -28,4 +36,7 @@ for sess in sess_list:
     if sess['app-id'] not in dict_apps:
         dict_apps[sess['app-id']] = 0
     dict_apps[sess['app-id']] += 1
+    dict_apps['blockedByDBMS'] += int(sess['blocked-by-dbms'])
+    dict_apps['dbProcTook'] += int(sess['db-proc-took'])
+    dict_apps['bytesAll'] += int(sess['bytes-all'])
 print(json.dumps(dict_apps))
