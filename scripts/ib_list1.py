@@ -17,7 +17,6 @@ for cluster in cluster_res.split('\r\n\r\n'):
     ib_res = ib_res.replace("infobase", "{#INFOBASE}")
     ib_res = ib_res.replace("name", "{#NAME}")
     ib_res = ib_res.replace("descr", "{#DESCR}")
-    print(ib_res)
     for ib in ib_res.split('\r\n\r\n'):
         ib_list.append({**getDictFromString(ib),
                         "{#CLUSTER}": curr_cluster['cluster'],
