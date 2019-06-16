@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>4.0</version>
-    <date>2018-11-26T18:22:34Z</date>
+    <version>4.2</version>
+    <date>2019-06-16T07:20:57Z</date>
     <groups>
         <group>
             <name>Templates/Applications</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>1C Enterprise</template>
-            <name>1C Enterprise</name>
+            <template>Template 1C Enterprise</template>
+            <name>Template 1C Enterprise</name>
             <description/>
             <groups>
                 <group>
@@ -30,7 +30,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>1cEnt.infobases</key>
-                    <delay>2h</delay>
+                    <delay>2m</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
@@ -57,11 +57,11 @@
                     <description/>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Background jobs in {#NAME}</name>
+                            <name>Background jobs in {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.bjobs[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.bjobs[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
@@ -97,6 +97,8 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.BackgroundJob</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -120,19 +122,19 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>Blocked objects by DBMS in {#NAME}</name>
+                            <name>Blocked objects by DBMS in {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.blocked-by-dbms[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.blocked-by-dbms[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
-                            <status>0</status>
+                            <status>1</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
                             <units/>
@@ -164,6 +166,8 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.blockedByDBMS</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -187,19 +191,19 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>Data in {#NAME}</name>
+                            <name>Data in {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.bytes-all[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.bytes-all[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
-                            <status>0</status>
+                            <status>1</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
                             <units>B</units>
@@ -231,10 +235,14 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.bytesAll</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                                 <step>
                                     <type>9</type>
                                     <params/>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -258,15 +266,15 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>COM connections in {#NAME}</name>
+                            <name>COM connections in {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.comconn[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.comconn[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
@@ -302,6 +310,8 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.COMConnection</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -325,15 +335,15 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>Block duration in {#NAME}</name>
+                            <name>Block duration in {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.db-proc-took[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.db-proc-took[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
@@ -369,6 +379,8 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.dbProcTook</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -392,15 +404,15 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>Designer clients in {#NAME}</name>
+                            <name>Designer clients in {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.designers[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.designers[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
@@ -436,6 +448,8 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.Designer</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -459,15 +473,15 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>Thick clients in {#NAME}</name>
+                            <name>Thick clients in {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.thickClient[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.thickClient[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
@@ -503,6 +517,8 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.1CV8</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -526,15 +542,15 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>Thin clients in {#NAME}</name>
+                            <name>Thin clients in {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.thinClient[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.thinClient[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
@@ -570,6 +586,8 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.1CV8C</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -593,15 +611,75 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>Web clients in {#NAME}</name>
+                            <name>Total sessions in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>15</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>1cEnt.sessions.totalSessions[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params>last(&quot;1cEnt.sessions.designers[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.bjobs[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.comconn[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.thickClient[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.thinClient[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.webclients[{#INFOBASE}, {#CLUSTER}]&quot;)</params>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint/>
+                            <timeout>3s</timeout>
+                            <url/>
+                            <query_fields/>
+                            <posts/>
+                            <status_codes>200</status_codes>
+                            <follow_redirects>1</follow_redirects>
+                            <post_type>0</post_type>
+                            <http_proxy/>
+                            <headers/>
+                            <retrieve_mode>0</retrieve_mode>
+                            <request_method>0</request_method>
+                            <output_format>0</output_format>
+                            <allow_traps>0</allow_traps>
+                            <ssl_cert_file/>
+                            <ssl_key_file/>
+                            <ssl_key_password/>
+                            <verify_peer>0</verify_peer>
+                            <verify_host>0</verify_host>
+                            <application_prototypes/>
+                            <master_item/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Web clients in {#NAME}, {#CLUSTER_NAME}</name>
                             <type>18</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions.webclients[{#INFOBASE}]</key>
+                            <key>1cEnt.sessions.webclients[{#INFOBASE}, {#CLUSTER}]</key>
                             <delay>0</delay>
                             <history>30d</history>
                             <trends>365d</trends>
@@ -637,6 +715,8 @@
                                 <step>
                                     <type>12</type>
                                     <params>$.WebClient</params>
+                                    <error_handler>0</error_handler>
+                                    <error_handler_params/>
                                 </step>
                             </preprocessing>
                             <jmx_endpoint/>
@@ -660,16 +740,16 @@
                             <verify_host>0</verify_host>
                             <application_prototypes/>
                             <master_item>
-                                <key>1cEnt.sessions[{#INFOBASE}]</key>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
                             </master_item>
                         </item_prototype>
                         <item_prototype>
-                            <name>Infobase sessions {#NAME}</name>
+                            <name>Infobase sessions {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <type>0</type>
                             <snmp_community/>
                             <snmp_oid/>
-                            <key>1cEnt.sessions[{#INFOBASE}]</key>
-                            <delay>10m</delay>
+                            <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            <delay>5m</delay>
                             <history>90d</history>
                             <trends>0</trends>
                             <status>0</status>
@@ -727,7 +807,63 @@
                     <trigger_prototypes/>
                     <graph_prototypes>
                         <graph_prototype>
-                            <name>Infobase sessions {#NAME}</name>
+                            <name>Infobase data {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <width>900</width>
+                            <height>200</height>
+                            <yaxismin>0.0000</yaxismin>
+                            <yaxismax>100.0000</yaxismax>
+                            <show_work_period>1</show_work_period>
+                            <show_triggers>1</show_triggers>
+                            <type>0</type>
+                            <show_legend>1</show_legend>
+                            <show_3d>0</show_3d>
+                            <percent_left>0.0000</percent_left>
+                            <percent_right>0.0000</percent_right>
+                            <ymin_type_1>0</ymin_type_1>
+                            <ymax_type_1>0</ymax_type_1>
+                            <ymin_item_1>0</ymin_item_1>
+                            <ymax_item_1>0</ymax_item_1>
+                            <graph_items>
+                                <graph_item>
+                                    <sortorder>0</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>FF0000</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.db-proc-took[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <drawtype>0</drawtype>
+                                    <color>FF8000</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.blocked-by-dbms[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>5</drawtype>
+                                    <color>0040FF</color>
+                                    <yaxisside>1</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.bytes-all[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>Infobase sessions {#NAME}, cluster {#CLUSTER_NAME}</name>
                             <width>900</width>
                             <height>200</height>
                             <yaxismin>0.0000</yaxismin>
@@ -752,8 +888,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.designers[{#INFOBASE}]</key>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.designers[{#INFOBASE}, {#CLUSTER}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -764,8 +900,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.thickClient[{#INFOBASE}]</key>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.thickClient[{#INFOBASE}, {#CLUSTER}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -776,8 +912,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.thinClient[{#INFOBASE}]</key>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.thinClient[{#INFOBASE}, {#CLUSTER}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -788,8 +924,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.comconn[{#INFOBASE}]</key>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.comconn[{#INFOBASE}, {#CLUSTER}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -800,8 +936,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.bjobs[{#INFOBASE}]</key>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.bjobs[{#INFOBASE}, {#CLUSTER}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -812,44 +948,20 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.webclients[{#INFOBASE}]</key>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.webclients[{#INFOBASE}, {#CLUSTER}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
                                     <sortorder>6</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>6C59DC</color>
+                                    <color>00FFFF</color>
                                     <yaxisside>1</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.db-proc-took[{#INFOBASE}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>7</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>C7A72D</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.blocked-by-dbms[{#INFOBASE}]</key>
-                                    </item>
-                                </graph_item>
-                                <graph_item>
-                                    <sortorder>8</sortorder>
-                                    <drawtype>0</drawtype>
-                                    <color>F230E0</color>
-                                    <yaxisside>1</yaxisside>
-                                    <calc_fnc>2</calc_fnc>
-                                    <type>0</type>
-                                    <item>
-                                        <host>1C Enterprise</host>
-                                        <key>1cEnt.sessions.bytes-all[{#INFOBASE}]</key>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.db-proc-took[{#INFOBASE}, {#CLUSTER}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -874,12 +986,16 @@
                     <ssl_key_password/>
                     <verify_peer>0</verify_peer>
                     <verify_host>0</verify_host>
+                    <lld_macro_paths/>
+                    <preprocessing/>
+                    <master_item/>
                 </discovery_rule>
             </discovery_rules>
             <httptests/>
             <macros/>
             <templates/>
             <screens/>
+            <tags/>
         </template>
     </templates>
 </zabbix_export>

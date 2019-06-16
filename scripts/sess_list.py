@@ -10,18 +10,16 @@ def getDictFromString(txtBlock):
     return dict_el
 
 
-dict_apps = {'COMConnection': 0,
-             'Designer': 0,
-             '1CV8C': 0,
-             '1CV8': 0,
-             'BackgroundJob': 0,
+dict_apps = {'COMConnection':0,
+             'Designer':0,
+             '1CV8C':0,
+             '1CV8':0,
+             'BackgroundJob':0,
              'WebClient': 0,
-             'blockedByDBMS': 0,
-             'dbProcTook': 0,
-             'bytesAll': 0}
-cluster_res = subprocess.check_output(['rac', 'cluster', 'list']).decode('cp866').strip()
-cluster = getDictFromString(cluster_res)
-cmd_list = ['rac', 'session', 'list', '--cluster='+cluster['cluster']]
+             'blockedByDBMS':0,
+             'dbProcTook':0,
+             'bytesAll':0}
+cmd_list = ['rac', 'session', 'list', '--cluster=' + sys.argv[2]]
 if sys.argv[1] != 'all_infobases':
     cmd_list.append('--infobase=' + sys.argv[1])
 sess_res = subprocess.check_output(cmd_list).decode('cp866').strip()
