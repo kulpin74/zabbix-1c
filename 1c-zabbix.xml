@@ -30,7 +30,7 @@
                     <snmp_community/>
                     <snmp_oid/>
                     <key>1cEnt.infobases</key>
-                    <delay>2m</delay>
+                    <delay>2h</delay>
                     <status>0</status>
                     <allowed_hosts/>
                     <snmpv3_contextname/>
