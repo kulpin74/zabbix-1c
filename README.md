@@ -145,4 +145,6 @@ WantedBy=multi-user.target
 ---
 </details>
 
+---
+
 При обнаружении ошибок, возникающих вопросах, необходимости добавления новых данных в мониторинг - создайте [issue](https://github.com/kulpin74/zabbix-1c/issues/new).
