@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.2</version>
+    <date>2022-02-06T07:42:34Z</date>
+    <groups>
+        <group>
+            <name>Templates/Applications</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template 1C Enterprise</template>
+            <name>Template 1C Enterprise</name>
+            <groups>
+                <group>
+                    <name>Templates/Applications</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>1C Enterprise</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Infobases</name>
+                    <key>1cEnt.infobases</key>
+                    <delay>2h</delay>
+                    <lifetime>5d</lifetime>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Background jobs in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.bjobs[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.BackgroundJob</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Blocked objects by DBMS in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.blocked-by-dbms[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <status>DISABLED</status>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.blockedByDBMS</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Data in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.bytes-all[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <status>DISABLED</status>
+                            <units>B</units>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.bytesAll</parameter>
+                                    </parameters>
+                                </step>
+                                <step>
+                                    <type>SIMPLE_CHANGE</type>
+                                    <parameters>
+                                        <parameter/>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>COM connections in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.comconn[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.COMConnection</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Block duration in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.db-proc-took[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <units>ms</units>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.dbProcTook</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Designer clients in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.designers[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.Designer</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Thick clients in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.thickClient[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.1CV8</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Thin clients in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.thinClient[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.1CV8C</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Total sessions in {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>CALCULATED</type>
+                            <key>1cEnt.sessions.totalSessions[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>5m</delay>
+                            <history>30d</history>
+                            <params>last(&quot;1cEnt.sessions.designers[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.bjobs[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.comconn[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.thickClient[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.thinClient[{#INFOBASE}, {#CLUSTER}]&quot;) + last(&quot;1cEnt.sessions.webclients[{#INFOBASE}, {#CLUSTER}]&quot;)</params>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Web clients in {#NAME}, {#CLUSTER_NAME}</name>
+                            <type>DEPENDENT</type>
+                            <key>1cEnt.sessions.webclients[{#INFOBASE}, {#CLUSTER}]</key>
+                            <delay>0</delay>
+                            <history>30d</history>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <preprocessing>
+                                <step>
+                                    <type>JSONPATH</type>
+                                    <parameters>
+                                        <parameter>$.WebClient</parameter>
+                                    </parameters>
+                                </step>
+                            </preprocessing>
+                            <master_item>
+                                <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            </master_item>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Infobase sessions {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <key>1cEnt.sessions[{#INFOBASE},{#CLUSTER}]</key>
+                            <delay>5m</delay>
+                            <trends>0</trends>
+                            <value_type>CHAR</value_type>
+                            <applications>
+                                <application>
+                                    <name>1C Enterprise</name>
+                                </application>
+                            </applications>
+                            <request_method>POST</request_method>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>Infobase data {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>FF0000</color>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.db-proc-took[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>FF8000</color>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.blocked-by-dbms[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>GRADIENT_LINE</drawtype>
+                                    <color>0040FF</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.bytes-all[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>Infobase sessions {#NAME}, cluster {#CLUSTER_NAME}</name>
+                            <type>STACKED</type>
+                            <graph_items>
+                                <graph_item>
+                                    <color>FF0000</color>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.designers[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>1</sortorder>
+                                    <color>0040FF</color>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.thickClient[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <color>00FF00</color>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.thinClient[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <color>FF8000</color>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.comconn[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>4</sortorder>
+                                    <color>FFFF00</color>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.bjobs[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>5</sortorder>
+                                    <color>BA2A5D</color>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.webclients[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>6</sortorder>
+                                    <color>00FFFF</color>
+                                    <yaxisside>RIGHT</yaxisside>
+                                    <item>
+                                        <host>Template 1C Enterprise</host>
+                                        <key>1cEnt.sessions.db-proc-took[{#INFOBASE}, {#CLUSTER}]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                    <request_method>POST</request_method>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
