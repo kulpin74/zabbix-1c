@@ -27,13 +27,12 @@ dict_apps = {'COMConnection': 0,
              'dbProcTook': 0,
              'bytesAll': 0}
 
-if len(sys.argv) >= 4:
-    cmd_list = ['rac', 'session', 'list', '--cluster=' + sys.argv[2], '--cluster-user='+sys.argv[3], '--cluster-pwd='+sys.argv[4]]
-else:
-    cmd_list = ['rac', 'session', 'list', '--cluster=' + sys.argv[2]]
 
+cmd_list = ['rac', 'session', 'list', '--cluster=' + sys.argv[2]]
+if len(sys.argv) >= 4:
+    cmd_list += ['--cluster-user='+sys.argv[3], '--cluster-pwd='+sys.argv[4]]
 if sys.argv[1] != 'all_infobases':
-    cmd_list.append('--infobase=' + sys.argv[1])
+    cmd_list += ['--infobase=' + sys.argv[1]]
 sess_res = subprocess.check_output(cmd_list).decode(C_PAGE).strip()
 if len(sess_res) < 2:
     print(json.dumps(dict_apps))
